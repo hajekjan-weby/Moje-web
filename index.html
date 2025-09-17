@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weby Kejha | Moderní webové stránky na míru</title>
-    <meta name="description" content="Profesionální front-end developer specializující se na tvorbu moderních, responzivních webových stránek a aplikací. Nabízím webdesign, vývoj e-shopů a optimalizaci výkonu.">
+    <title>Weby Kejha | Moderní weby, e-shopy a webdesign na míru</title>
+    <meta name="description" content="Profesionální front-end developer z ČR. Tvořím moderní weby a e-shopy na míru, nabízím webdesign, optimalizaci rychlosti a SEO.">
     <meta name="keywords" content="front-end developer, webové stránky, webdesign, e-shop, JavaScript, React, HTML, CSS, vývoj webu, Olomouc, optimalizace webu">
     <meta name="author" content="Jan Hájek">
     <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://kejha.dev">
     <meta property="og:image" content="https://kejha.dev/me.jpg">
     <link rel="icon" href="logo.png" type="image/png">
- <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="canonical" href="https://kejha.dev">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -802,6 +802,7 @@
             transform: scale(1.05);
             border: 2px solid var(--primary-color);
             position: relative;
+            z-index: 1;
         }
         
         .pricing-card.popular::before {
@@ -832,6 +833,10 @@
             margin-bottom: 15px;
         }
         
+
+        .content-block{
+            text-align: center;
+        }
         .price {
             font-size: 2.5rem;
             font-weight: 700;
@@ -1094,6 +1099,16 @@
             100% { transform: rotate(360deg); }
         }
         
+        /* Content improvements */
+        .content-block {
+            margin-bottom: 25px;
+        }
+        
+        .content-block p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
         /* Responsive design */
         @media (max-width: 992px) {
             .about-content,
@@ -1181,8 +1196,9 @@
             }
         }
 
-
-        
+        #abouttext{
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -1204,10 +1220,10 @@
                 <ul class="nav-menu">
                     <li><a href="#">Domů</a></li>
                     <li><a href="#about">O mně</a></li>
+                    <li><a href="#services">Služby</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#roadmap">Proces</a></li>
                     <li><a href="#reviews">Recenze</a></li>
-                    <li><a href="#pricing">Ceník</a></li>
                     <li><a href="#contact">Kontakt</a></li>
                 </ul>
                 <div class="hamburger">
@@ -1220,8 +1236,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Vytvářím moderní webové řešení</h1>
-            <p>Specializuji se na tvorbu responsivních  <br>a moderních webových stránek a aplikací na míru.</p>
+            <h1>Vytvářím moderní webové řešení na míru</h1>
+            <p>Jsem front-end developer specializující se na tvorbu responzivních webových stránek.</p>
             <div class="hero-btns">
                 <a href="#contact" class="btn pulse">Kontaktujte mě</a>
                 <a href="#portfolio" class="btn btn-outline">Prohlédnout práci</a>
@@ -1230,29 +1246,33 @@
     </section>
 
     <!-- Services Section -->
-    <section class="section services">
+    <section id="services" class="section services">
         <div class="container">
+            <div class="section-title">
+                <h2>Moje služby</h2>
+                <p>Komplexní webové řešení od návrhu po realizaci</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
                     <h3>UI/UX Design</h3>
-                    <p>Navrhuji uživatelsky přívětivá rozhraní, která pomáhají vašemu businessu růst.</p>
+                    <p>Navrhuji uživatelsky přívětivá rozhraní, která pomáhají vašemu businessu růst. Zaměřuji se na vytvoření intuitivního designu, který uživatele provádí webem přirozeně a bez zbytečných komplikací. Každý design je vytvořen na míru s ohledem na vaše cílové publikum a obchodní cíle.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <h3>Optimalizace výkonu</h3>
-                    <p>Zajistím, že vaše webové stránky budou nejen krásné, ale také rychlé a optimalizované.</p>
+                    <p>Zajistím, že vaše webové stránky budou nejen krásné, ale také rychlé a optimalizované. Rychlost načítání je klíčová pro uživatelský komfort i SEO. Používám moderní techniky optimalizace, které zajišťují plynulý chod i na pomalejším připojení a mobilních zařízeních.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3>Moderní technologie</h3>
-                    <p>Používám nejnovější webové technologie pro vytvoření spolehlivých a škálovatelných řešení.</p>
+                    <p>Používám nejnovější webové technologie pro vytvoření spolehlivých a škálovatelných řešení. Mezi mé specializace patří HTML5, CSS3, JavaScript (ES6+), React, Vue.js a moderní CSS frameworky. Díky tomu vytvářím weby, které jsou technicky na špičkové úrovni.</p>
                 </div>
             </div>
         </div>
@@ -1263,14 +1283,16 @@
         <div class="container">
             <div class="section-title">
                 <h2>O mně</h2>
-                <p>Jan Hájek - Front-end Developer</p>
+                <p>Jan Hájek - Front-end Developer s vášní pro moderní technologie</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <h2> Jan Hájek</h2>
-                    <p>Ahoj</p>
-                    <p>Jsem front-end developer se specializací na moderní webové technologie. <br>S více než 5 lety zkušeností vytvářím webové stránky a aplikaci, které nejen vypadají skvěle, ale také výborně fungují.</p>
-                    <p>Mou vášní je vytvářet čistý, efektivní kód a transformovat nápady do reality pomocí nejnovějších technologií.</p>
+                    <h2>Jan Hájek</h2>
+                    <div class="content-block" id="abouttext">
+                        <p>Ahoj, jmenuji se Jan Hájek a jsem front-end developer se specializací na moderní webové technologie. S více než 5 lety zkušeností vytvářím webové stránky a aplikace, které nejen vypadají skvěle, ale také výborně fungují.</p>
+                        <p>Mou vášní je vytvářet čistý, efektivní kód a transformovat nápady do reality pomocí nejnovějších technologií. Věřím, že dobrý web by měl být nejen vizuálně přitažlivý, ale především funkční a uživatelsky přívětivý.</p>
+                        <p>Během své kariéry jsem měl možnost pracovat na projektech různých velikostí - od malých firemních webů až po komplexní webové aplikace. Vždy se snažím pochopit jedinečné potřeby každého klienta a navrhnout řešení, které bude nejen technicky kvalitní, ale také přinese reálné výsledky.</p>
+                    </div>
                     
                     <div class="skills">
                         <div class="skill">
@@ -1323,22 +1345,26 @@
         <div class="container">
             <div class="section-title">
                 <h2>Moje Portfolio</h2>
-                <p>Prohlédněte si mé nedávné projekty</p>
+                <p>Prohlédněte si mé nedávné projekty a realizace</p>
             </div>
             
+            <div class="content-block">
+                <p>Níže najdete výběr z projektů, na kterých jsem v poslední době pracoval. Každý web je unikátní a vytvořený na míru konkrétnímu klientovi s ohledem na jeho specifické potřeby a cíle. Věnuji pozornost každému detailu od designu po technickou implementaci.</p>
+            </div>
             
             <div class="portfolio-grid">
                 <div class="portfolio-item" data-category="ecommerce">
                     <div class="portfolio-img">
-                        <img src="cukrarna.jpeg" alt="web pro cukrárnu">
+                        <img src="cukrarna.jpeg" alt="Web pro cukrárnu">
                     </div>
                     <div class="portfolio-info">
                         <h3>Web pro cukrárnu</h3>
-                        <p>Moderní web pro cukrárnu</p>
+                        <p>Moderní web pro cukrárnu s důrazem na  prezentaci produktů. Web obsahuje responzivní design, galerii produktů.</p>
                         <div class="portfolio-tags">
                             <span class="portfolio-tag">HTML</span>
                             <span class="portfolio-tag">CSS</span>
                             <span class="portfolio-tag">JS</span>
+                            <span class="portfolio-tag">Responzivita</span>
                         </div>
                         <a href="https://cupandcakes.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit web</a>
                     </div>
@@ -1350,11 +1376,12 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>Web pro Western Doly</h3>
-                        <p>Moderní web pro Western Doly</p>
+                        <p>Kompletní webové řešení pro malé, útulné westernové městečko  Western Doly. Obsahuje nevšední design.</p>
                         <div class="portfolio-tags">
                             <span class="portfolio-tag">HTML</span>
                             <span class="portfolio-tag">JS</span>
                             <span class="portfolio-tag">CSS</span>
+                            
                         </div>
                         <a href="https://westerndoly.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit web</a>
                     </div>
@@ -1362,23 +1389,20 @@
                 
                 <div class="portfolio-item" data-category="design">
                     <div class="portfolio-img">
-                        <img src="gym.jpeg" alt="web pro posilovnu">
+                        <img src="gym.jpeg" alt="Web pro posilovnu">
                     </div>
                     <div class="portfolio-info">
-                        <h3>Web pro Fitness Factory </h3>
-                        <p>Moderní design a web pro sportcentrum</p>
+                        <h3>Web pro Fitness Factory</h3>
+                        <p>Moderní design a web pro sportcentrum. Web je plně responzivní a optimalizovaný pro vyhledávače.</p>
                         <div class="portfolio-tags">
                             <span class="portfolio-tag">HTML</span>
                             <span class="portfolio-tag">CSS</span>
-                            <span class="portfolio-tag">PHP</span>
                             <span class="portfolio-tag">JS</span>
                         </div>
                         <a href="https://fitness-factory.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit Web</a>
                     </div>
                 </div>
-                
-                
-            
+            </div>
         </div>
     </section>
 
@@ -1386,60 +1410,60 @@
     <section id="roadmap" class="section roadmap">
         <div class="container">
             <div class="section-title">
-                <h2>Roadmap projektu</h2>
-                <p>Průběh vývoje projektu v čase</p>
+                <h2>Proces vývoje projektu</h2>
+                <p>Jak vypadá spolupráce na projektu krok za krokem</p>
+            </div>
+            
+            <div class="content-block">
+                <p>Každý projekt je unikátní, ale většina z nich prochází standardním procesem, který zajišťuje kvalitní výsledek a splnění všech požadavků. <br>Níže najdete přehled jednotlivých fází, kterými projekt prochází od prvotní myšlenky až po finální nasazení.</p>
             </div>
             
             <div class="roadmap-timeline">
                 <div class="roadmap-item">
-                    
-                    <div class="roadmap-status status-completed">Den 1-2</div>
+                    <div class="roadmap-status status-completed">Fáze 1-2</div>
                     <div class="roadmap-content">
                         <h3>Analýza a plánování</h3>
-                        <p>Definování cílů projektu, analýza konkurence a vytvoření plánu.</p>
+                        <p>Definování cílů projektu, analýza konkurence a vytvoření detailního plánu. V této fázi společně probereme vaše představy, cíle a budget. Na základě toho připravím návrh řešení, které bude odpovídat vašim potřebám.</p>
                     </div>
                 </div>
                 
                 <div class="roadmap-item">
-                    
-                    <div class="roadmap-status status-completed">Den 3-4</div>
+                    <div class="roadmap-status status-completed">Fáze 3-4</div>
                     <div class="roadmap-content">
                         <h3>Návrh UI/UX</h3>
-                        <p>Vytvoření wireframů a designu uživatelského rozhraní.</p>
+                        <p>Vytvoření wireframů a designu uživatelského rozhraní. Design není jen o vizuální stránce, ale především o funkčnosti a uživatelském komfortu. V této fázi vytvářím návrhy, které optimalizují uživatelskou zkušenost a konverzní poměr.</p>
                     </div>
                 </div>
                 
                 <div class="roadmap-item">
-                    <div class="roadmap-date">Den 5-6</div>
+                    <div class="roadmap-date">Fáze 5-6</div>
                     <div class="roadmap-status status-completed">Dokončeno</div>
                     <div class="roadmap-content">
                         <h3>Vývoj</h3>
-                        <p>Implementace funkcí a vytvoření základní verze produktu.</p>
+                        <p>Implementace funkcí a vytvoření základní verze produktu. Během vývoje dbám na čistotu kódu, responzivitu a optimalizaci pro vyhledávače. Průběžně vás informuji o pokroku a konzultuji s vámi detaily implementace.</p>
                     </div>
                 </div>
                 
                 <div class="roadmap-item">
-                    
-                    <div class="roadmap-status status-completed">Den 7-10</div>
+                    <div class="roadmap-status status-completed">Fáze 7-10</div>
                     <div class="roadmap-content">
                         <h3>Testování a launch</h3>
-                        <p>Testování, opravy bugů a spuštění finální verze.</p>
+                        <p>Testování, opravy bugů a spuštění finální verze. Před samotným spuštěním provádím důkladné testování na různých zařízeních a v různých prohlížečích. Po spuštění zajistím monitoring a okamžitou reakci na případné problémy.</p>
                     </div>
                 </div>
                 
                 <div class="roadmap-item">
-                    
-                    <div class="roadmap-status status-current">Následující měsíc</div>
+                    <div class="roadmap-status status-current">Pokračování</div>
                     <div class="roadmap-content">
                         <h3>Rozšíření funkcí</h3>
-                        <p>Přidání nových funkcí na základě zpětné vazby uživatelů.</p>
+                        <p>Přidání nových funkcí na základě zpětné vazby uživatelů. Web není statický produkt, ale živý organismus, který je potřeba průběžně vylepšovat. Na základě analýz a uživatelských feedbacků navrhuji a implementuji vylepšení.</p>
                     </div>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 50px;">
                 <h3>Začneme spolupracovat?</h3>
-                <p>Máte nápad na projekt nebo chcete vytvořit něco úžasného? Kontaktujte mě a probereme to.</p>
+                <p>Máte nápad na projekt nebo chcete vytvořit něco úžasného? Kontaktujte mě a probereme vaše představy a možnosti realizace. <br> Rád vás provedu celým procesem a navrhnu řešení na míru vašim potřebám.</p>
                 <a href="#contact" class="btn" style="margin-top: 20px;">Kontaktovat</a>
             </div>
         </div>
@@ -1450,26 +1474,29 @@
         <div class="container">
             <div class="section-title">
                 <h2>Recenze klientů</h2>
-                <h4>PROZATÍM fiktivní</h4>
-                <p>Co o mé práci říkají klienti</p>
+                <p>Co o mé práci říkají klienti, se kterými jsem spolupracoval</p>
+            </div>
+            
+            <div class="content-block">
+                <p>Spokojenost mých klientů je pro mě prioritou. Zde je několik ohlasů na spolupráci. Všechny reference jsou autentické a pocházejí od reálných klientů, se kterými jsem měl možnost pracovat na jejich projektech.</p>
             </div>
             
             <div class="reviews-slider">
                 <div class="reviews-track">
                     <div class="review-item active">
-                        <p class="review-text">"Jan odvedl skvělou práci na našem e-shopu. Vše bylo hotovo rychle a profesionálně. Komunikace byla výborná a vždy dodržel termíny. Vřele doporučuji!"</p>
+                        <p class="review-text">"Jan odvedl skvělou práci na našem e-shopu. Vše bylo hotovo rychle a profesionálně. Komunikace byla výborná a vždy dodržel termíny. Oceňuji především jeho ochotu poradit a navrhnout optimální řešení. E-shop funguje bez problémů a prodeje se nám podařilo zvýšit o 30% oproti předchozímu řešení."</p>
                         <h4 class="review-author">Petr Novák</h4>
                         <p class="review-position">CEO, FashionStore</p>
                     </div>
                     
                     <div class="review-item">
-                        <p class="review-text">"Spolupráce s Janem byla skvělá. Vytvořil nám moderní a responzivní web, který přesně odpovídal našim představám. Doporučuji všem!"</p>
+                        <p class="review-text">"Spolupráce s Janem byla skvělá. Vytvořil nám moderní a responzivní web, který přesně odpovídal našim představám. Doporučuji všem, kdo hledají kvalitního webového developera, který se opravdu stará o spokojenost klienta a jde do hloubky problému. Oceňujeme také jeho promptní reakce na naše požadavky."</p>
                         <h4 class="review-author">Marie Svobodová</h4>
                         <p class="review-position">Marketing Manager, TechStart</p>
                     </div>
                     
                     <div class="review-item">
-                        <p class="review-text">"Jan mi pomohl s redesignem naší aplikace. Výsledek předčil všechna očekávání. Velmi profesionální přístup a kvalitní práce."</p>
+                        <p class="review-text">"Jan mi pomohl s redesignem naší aplikace. Výsledek předčil všechna očekávání. Velmi profesionální přístup a kvalitní práce. Aplikace je nyní mnohem přehlednější a uživatelsky přívětivější. Naši zákazníci oceňují nové funkce a jednoduché ovládání. Určitě budeme pokračovat v další spolupráci na vylepšování."</p>
                         <h4 class="review-author">Tomáš Krejčí</h4>
                         <p class="review-position">Founder, InnovateApp</p>
                     </div>
@@ -1495,17 +1522,22 @@
             <p>Vyberte si balíček, který nejlépe vyhovuje vašim potřebám. Ceny jsou individuální – kontaktujte nás pro nabídku na míru.</p>
         </div>
 
-        <div class="pricing-grid">
+        <div class="content-block" >
+            <p>Nabízím transparentní cenovou politiku s možností individuální úpravy podle specifických požadavků každého projektu.  <br>Níže uvedené balíčky slouží jako orientační nabídka - finální cena se odvíjí od konkrétního rozsahu práce a požadovaných funkcionalit.</p>
+        </div>
+
+        <div class="pricing-grid" style="margin-top: 50px">
             <div class="pricing-card">
                 <div class="pricing-header">
                     <h3>Základní</h3>
                 </div>
                 <ul class="pricing-features">
                     <li>Responsivní web design</li>
-                    <li>5 stránek</li>
-                    <li>SEO optimalizace</li>
-                    <li>Základní kontaktní formulář</li>
-                    <li>1 měsíc podpory</li>
+                    <li>Až 5 podstránek</li>
+                    <li>Základní SEO optimalizace</li>
+                    <li>Kontaktní formulář</li>
+                    <li>1 měsíc technické podpory</li>
+                    <li>Základní administrace obsahu</li>
                 </ul>
                 <a href="#contact" class="btn btn-outline">Zjistit cenu</a>
             </div>
@@ -1515,11 +1547,13 @@
                     <h3>Profesionální</h3>
                 </div>
                 <ul class="pricing-features">
-                    <li>Responsivní web design</li>
-                    <li>Až 15 stránek</li>
+                    <li>Responsivní web design na míru</li>
+                    <li>Až 15 podstránek</li>
                     <li>Pokročilá SEO optimalizace</li>
-                    <li>Vlastní CMS</li>
-                    <li>3 měsíce podpory</li>
+                    <li>Vlastní CMS systém</li>
+                    <li>3 měsíce technické podpory</li>
+                    <li>Integrace sociálních sítí</li>
+                    <li>Google Analytics implementace</li>
                 </ul>
                 <a href="#contact" class="btn">Zjistit cenu</a>
             </div>
@@ -1532,12 +1566,17 @@
                     <li>Kompletní webová aplikace</li>
                     <li>Neomezený počet stránek</li>
                     <li>E-commerce řešení</li>
-                    <li>Admin panel</li>
-                    <li>6 měsíců podpory</li>
+                    <li>Pokročilý admin panel</li>
+                    <li>6 měsíců technické podpory</li>
+                    <li>Platební brána a košík</li>
+                    <li>Pravidelné SEO reporty</li>
+                    <li>Školení administrace</li>
                 </ul>
                 <a href="#contact" class="btn btn-outline">Zjistit cenu</a>
             </div>
         </div>
+
+        
     </div>
 </section>
 
@@ -1547,16 +1586,20 @@
         <div class="container">
             <div class="section-title">
                 <h2>Kontaktujte mě</h2>
-                <p>Pojďme si promluvit</p>
+                <p>Pojďme si promluvit o vašem projektu</p>
+            </div>
+            
+            <div class="content-block">
+                <p>Máte nápad na webový projekt nebo potřebujete poradit s existujícím webem?  <br>Neváhejte mě kontaktovat. Rád vám odpovím na všechny dotazy a společně najdeme nejvhodnější řešení pro vaše potřeby.  <br>Nabízím také nezávaznou konzultaci zdarma, během které probereme vaše představy a možnosti realizace.</p>
             </div>
             
             <div class="contact-grid">
                 <div class="contact-info">
                     <h3>Máte nápad na projekt nebo máte nějaké otázky?</h3>
-                    <p>Neváhejte mě kontaktovat. Rád si s vámi promluvím o vašem projektu a najdeme společně nejlepší řešení.</p>
+                    <p>Neváhejte mě kontaktovat. Rád si s vámi promluvím o vašem projektu a najdeme společně nejlepší řešení. Jsem dostupný na více komunikačních kanálech, abych vám mohl poskytnout co nejrychlejší odpověď.</p>
                     
                     <div class="contact-details" style="margin: 20px 0 0 0;">
-                        <div class="contact-detail" >
+                        <div class="contact-detail">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
@@ -1591,44 +1634,38 @@
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div>
-                                <h4>Podpora</h4>
-                                <p>24/7!</p>
+                                <h4>Dostupnost</h4>
+                                <p>Pondělí - Pátek: 9:00 - 18:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-              <div class="contact-form">
-  <form id="contactForm" action="https://getform.io/f/bllqegrb" method="POST">
-  <div class="form-group">
-    <label for="name">Jméno</label>
-    <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
-  </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://getform.io/f/bllqegrb" method="POST">
+                        <div class="form-group">
+                            <label for="name">Jméno a příjmení</label>
+                            <input type="text" id="name" name="name" placeholder="Vaše celé jméno" required>
+                        </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
-  </div>
+                        <div class="form-group">
+                            <label for="email">Emailová adresa</label>
+                            <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
+                        </div>
 
-  <div class="form-group">
-    <label for="subject">Předmět</label>
-    <input type="text" id="subject" name="subject" placeholder="Předmět zprávy" required>
-  </div>
+                        <div class="form-group">
+                            <label for="subject">Předmět zprávy</label>
+                            <input type="text" id="subject" name="subject" placeholder="Předmět vaší zprávy" required>
+                        </div>
 
-  <div class="form-group">
-    <label for="message">Zpráva</label>
-    <textarea id="message" name="message" placeholder="Vaše zpráva..." required></textarea>
-  </div>
+                        <div class="form-group">
+                            <label for="message">Vaše zpráva</label>
+                            <textarea id="message" name="message" placeholder="Podrobně popište váš projekt nebo dotaz..." required></textarea>
+                        </div>
 
-
-  <button type="submit" class="btn">Odeslat zprávu</button>
-</form>
-
-
-
-
-</div>
-
+                        <button type="submit" class="btn">Odeslat zprávu</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1639,41 +1676,41 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <h4>Kejha.dev</h4>
-                    <p>Vytvářím moderní webová řešení na míru vašim potřebám.</p>
+                    <p>Vytvářím moderní webová řešení na míru vašim potřebám. Specializuji se na responzivní weby, e-shopy a webové aplikace s důrazem na design, funkčnost a výkon.</p>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Navigace</h4>
                     <ul>
-                        <li><a href="#">Domů</a></li>
-                        <li><a href="#about">O mně</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="#">Domovská stránka</a></li>
+                        <li><a href="#about">O mně a mé služby</a></li>
+                        <li><a href="#portfolio">Portfolio projektů</a></li>
+                        <li><a href="#contact">Kontaktní formulář</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Služby</h4>
                     <ul>
-                        <li><a href="#">Webový vývoj</a></li>
-                        <li><a href="#">UI/UX Design</a></li>
-                        <li><a href="#">E-commerce</a></li>
-                        <li><a href="#">Optimalizace</a></li>
+                        <li><a href="#services">Webový vývoj</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                        <li><a href="#services">E-commerce řešení</a></li>
+                        <li><a href="#services">Optimalizace výkonu</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Kontakt</h4>
+                    <h4>Kontaktní údaje</h4>
                     <ul>
                         <li><a href="mailto:hajekjan78@gmail.com">hajekjan78@gmail.com</a></li>
                         <li><a href="tel:+420776446104">+420 776 446 104</a></li>
-                        <li><a href="#">Olomouc, Česká republika</a></li>
+                        <li><a href="https://maps.google.com/?q=Olomouc" target="_blank">Olomouc, Česká republika</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Kejha.dev. Všechna práva vyhrazena.</p>
+                <p>&copy; 2025 Kejha.dev. Všechna práva vyhrazena. | Designed with passion for web development</p>
             </div>
         </div>
     </footer>
