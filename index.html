@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weby Kejha | Moderní webové stránky na míru</title>
+    <meta name="description" content="Profesionální front-end developer specializující se na tvorbu moderních, responzivních webových stránek a aplikací. Nabízím webdesign, vývoj e-shopů a optimalizaci výkonu.">
+    <meta name="keywords" content="front-end developer, webové stránky, webdesign, e-shop, JavaScript, React, HTML, CSS, vývoj webu, Olomouc, optimalizace webu">
+    <meta name="author" content="Jan Hájek">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Jan Hájek - Front-end Developer | Moderní webové stránky na míru">
+    <meta property="og:description" content="Profesionální front-end developer specializující se na tvorbu moderních webových stránek a aplikací.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kejha.dev">
+    <meta property="og:image" content="https://kejha.dev/me.jpg">
+    <link rel="icon" href="logo.png" type="image/png">
+ <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="canonical" href="https://kejha.dev">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Základní styly */
+        :root {
+            --primary-color: #10b981;
+            --primary-dark: #0b8457;
+            --primary-light: #34d399;
+            --secondary-color: #64748b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --success-color: #10b981;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .section-title p {
+            color: var(--secondary-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .nav-menu.loaded li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-menu li:nth-child(1) { transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s; }
+        .nav-menu li:nth-child(2) { transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s; }
+        .nav-menu li:nth-child(3) { transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s; }
+        .nav-menu li:nth-child(4) { transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s; }
+        .nav-menu li:nth-child(5) { transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s; }
+        .nav-menu li:nth-child(6) { transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s; }
+        .nav-menu li:nth-child(7) { transition: opacity 0.5s ease 0.7s, transform 0.5s ease 0.7s; }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .hamburger:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Hero section */
+        .hero {
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("backg.png");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            animation: backgroundZoom 20s infinite alternate;
+        }
+        
+        @keyframes backgroundZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 1.1s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            transform: translateX(0);
+            }
+        }
+        
+        /* Pulse animation for CTA */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Services section */
+        .services {
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* About section */
+        .about {
+            background-color: #f8fafc;
+        }
+
+        .about img {
+            height: 700px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .about img.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .about-text h2.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .about-text p.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-text p:nth-child(2) { transition-delay: 0.2s; }
+        .about-text p:nth-child(3) { transition-delay: 0.4s; }
+        
+        .skills {
+            margin-top: 30px;
+        }
+        
+        .skill {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .skill.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill:nth-child(1) { transition-delay: 0.1s; }
+        .skill:nth-child(2) { transition-delay: 0.2s; }
+        .skill:nth-child(3) { transition-delay: 0.3s; }
+        .skill:nth-child(4) { transition-delay: 0.4s; }
+        
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Portfolio section */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            margin: 5px;
+            background-color: #f1f5f9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .portfolio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-info {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .portfolio-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-info p {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .portfolio-tag {
+            padding: 5px 10px;
+            background-color: #f1f5f9;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .portfolio-tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Roadmap section */
+        .roadmap {
+            background-color: #f8fafc;
+        }
+        
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .roadmap-timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .roadmap-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .roadmap-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .roadmap-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .roadmap-item:nth-child(even) {
+            left: 50%;
+            transform: translateX(50px);
+        }
+        
+        .roadmap-item:nth-child(even).visible {
+            transform: translateX(0);
+        }
+        
+        .roadmap-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .roadmap-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .roadmap-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .roadmap-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .roadmap-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .roadmap-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .roadmap-content p {
+            color: var(--secondary-color);
+        }
+        
+        .roadmap-date {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .roadmap-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .status-completed {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+        
+        .status-current {
+            background-color: #dbeafe;
+            color: var(--primary-color);
+        }
+        
+        /* Reviews section */
+        .reviews-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .review-item {
+            min-width: 100%;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .review-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        
+        .review-author {
+            font-weight: 700;
+            margin-top: 15px;
+        }
+        
+        .review-position {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .slider-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        /* Pricing section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+            background-color: white;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .pricing-card.popular::before {
+            content: 'Nejoblíbenější';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .pricing-features {
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+        
+        .pricing-features li:hover {
+            transform: translateX(5px);
+            color: var(--primary-color);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Contact section */
+        .contact {
+            background-color: #f8fafc;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .contact-info h3.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .contact-detail.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-detail:nth-child(1) { transition-delay: 0.1s; }
+        .contact-detail:nth-child(2) { transition-delay: 0.2s; }
+        .contact-detail:nth-child(3) { transition-delay: 0.3s; }
+        .contact-detail:nth-child(4) { transition-delay: 0.4s; }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            transition: var(--transition);
+        }
+        
+        .contact-detail:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+            background-color: var(--primary-dark);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .contact-form .form-group.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-form .form-group:nth-child(1) { transition-delay: 0.1s; }
+        .contact-form .form-group:nth-child(2) { transition-delay: 0.2s; }
+        .contact-form .form-group:nth-child(3) { transition-delay: 0.3s; }
+        .contact-form .form-group:nth-child(4) { transition-delay: 0.4s; }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            outline: none;
+            transform: translateY(-2px);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-col ul li a {
+            color: #cbd5e1;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Loading animation */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top: 5px solid var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .roadmap-timeline::after {
+                left: 31px;
+            }
+            
+            .roadmap-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .roadmap-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .roadmap-item::after {
+                left: 20px;
+            }
+            
+            .roadmap-item:nth-child(odd)::after {
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                height: calc(100vh - 80px);
+                padding: 50px 0;
+                transition: var(--transition);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .nav-menu a::after {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+            
+            .contact-detail,
+            .contact-form .form-group {
+                transform: translateX(0) !important;
+            }
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <!-- Loading animation -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Kejha.<span>dev</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">Domů</a></li>
+                    <li><a href="#about">O mně</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#reviews">Recenze</a></li>
+                    <li><a href="#pricing">Ceník</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Vytvářím moderní webové řešení</h1>
+            <p>Specializuji se na tvorbu responsivních  <br>a moderních webových stránek a aplikací na míru.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn pulse">Kontaktujte mě</a>
+                <a href="#portfolio" class="btn btn-outline">Prohlédnout práci</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Navrhuji uživatelsky přívětivá rozhraní, která pomáhají vašemu businessu růst.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Optimalizace výkonu</h3>
+                    <p>Zajistím, že vaše webové stránky budou nejen krásné, ale také rychlé a optimalizované.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Moderní technologie</h3>
+                    <p>Používám nejnovější webové technologie pro vytvoření spolehlivých a škálovatelných řešení.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-title">
+                <h2>O mně</h2>
+                <p>Jan Hájek - Front-end Developer</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2> Jan Hájek</h2>
+                    <p>Ahoj</p>
+                    <p>Jsem front-end developer se specializací na moderní webové technologie. <br>S více než 5 lety zkušeností vytvářím webové stránky a aplikaci, které nejen vypadají skvěle, ale také výborně fungují.</p>
+                    <p>Mou vášní je vytvářet čistý, efektivní kód a transformovat nápady do reality pomocí nejnovějších technologií.</p>
+                    
+                    <div class="skills">
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span>HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span>JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span>React</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-info">
+                                <span>UI/UX Design</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="me.jpg" alt="Jan Hájek - Front-end Developer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Moje Portfolio</h2>
+                <p>Prohlédněte si mé nedávné projekty</p>
+            </div>
+            
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="ecommerce">
+                    <div class="portfolio-img">
+                        <img src="cukrarna.jpeg" alt="web pro cukrárnu">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Web pro cukrárnu</h3>
+                        <p>Moderní web pro cukrárnu</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">HTML</span>
+                            <span class="portfolio-tag">CSS</span>
+                            <span class="portfolio-tag">JS</span>
+                        </div>
+                        <a href="https://cupandcakes.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit web</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-img">
+                        <img src="western.jpg" alt="Web pro western doly">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Web pro Western Doly</h3>
+                        <p>Moderní web pro Western Doly</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">HTML</span>
+                            <span class="portfolio-tag">JS</span>
+                            <span class="portfolio-tag">CSS</span>
+                        </div>
+                        <a href="https://westerndoly.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit web</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="design">
+                    <div class="portfolio-img">
+                        <img src="gym.jpeg" alt="web pro posilovnu">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Web pro Fitness Factory </h3>
+                        <p>Moderní design a web pro sportcentrum</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">HTML</span>
+                            <span class="portfolio-tag">CSS</span>
+                            <span class="portfolio-tag">PHP</span>
+                            <span class="portfolio-tag">JS</span>
+                        </div>
+                        <a href="https://fitness-factory.onrender.com" class="btn btn-outline" style="margin-top: 20px;">Zobrazit Web</a>
+                    </div>
+                </div>
+                
+                
+            
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="section roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Roadmap projektu</h2>
+                <p>Průběh vývoje projektu v čase</p>
+            </div>
+            
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    
+                    <div class="roadmap-status status-completed">Den 1-2</div>
+                    <div class="roadmap-content">
+                        <h3>Analýza a plánování</h3>
+                        <p>Definování cílů projektu, analýza konkurence a vytvoření plánu.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    
+                    <div class="roadmap-status status-completed">Den 3-4</div>
+                    <div class="roadmap-content">
+                        <h3>Návrh UI/UX</h3>
+                        <p>Vytvoření wireframů a designu uživatelského rozhraní.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Den 5-6</div>
+                    <div class="roadmap-status status-completed">Dokončeno</div>
+                    <div class="roadmap-content">
+                        <h3>Vývoj</h3>
+                        <p>Implementace funkcí a vytvoření základní verze produktu.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    
+                    <div class="roadmap-status status-completed">Den 7-10</div>
+                    <div class="roadmap-content">
+                        <h3>Testování a launch</h3>
+                        <p>Testování, opravy bugů a spuštění finální verze.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    
+                    <div class="roadmap-status status-current">Následující měsíc</div>
+                    <div class="roadmap-content">
+                        <h3>Rozšíření funkcí</h3>
+                        <p>Přidání nových funkcí na základě zpětné vazby uživatelů.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Začneme spolupracovat?</h3>
+                <p>Máte nápad na projekt nebo chcete vytvořit něco úžasného? Kontaktujte mě a probereme to.</p>
+                <a href="#contact" class="btn" style="margin-top: 20px;">Kontaktovat</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recenze klientů</h2>
+                <h4>PROZATÍM fiktivní</h4>
+                <p>Co o mé práci říkají klienti</p>
+            </div>
+            
+            <div class="reviews-slider">
+                <div class="reviews-track">
+                    <div class="review-item active">
+                        <p class="review-text">"Jan odvedl skvělou práci na našem e-shopu. Vše bylo hotovo rychle a profesionálně. Komunikace byla výborná a vždy dodržel termíny. Vřele doporučuji!"</p>
+                        <h4 class="review-author">Petr Novák</h4>
+                        <p class="review-position">CEO, FashionStore</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <p class="review-text">"Spolupráce s Janem byla skvělá. Vytvořil nám moderní a responzivní web, který přesně odpovídal našim představám. Doporučuji všem!"</p>
+                        <h4 class="review-author">Marie Svobodová</h4>
+                        <p class="review-position">Marketing Manager, TechStart</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <p class="review-text">"Jan mi pomohl s redesignem naší aplikace. Výsledek předčil všechna očekávání. Velmi profesionální přístup a kvalitní práce."</p>
+                        <h4 class="review-author">Tomáš Krejčí</h4>
+                        <p class="review-position">Founder, InnovateApp</p>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Pricing Section -->
+<section id="pricing" class="section pricing">
+    <div class="container">
+        <div class="section-title">
+            <h2>Ceník služeb</h2>
+            <p>Vyberte si balíček, který nejlépe vyhovuje vašim potřebám. Ceny jsou individuální – kontaktujte nás pro nabídku na míru.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Základní</h3>
+                </div>
+                <ul class="pricing-features">
+                    <li>Responsivní web design</li>
+                    <li>5 stránek</li>
+                    <li>SEO optimalizace</li>
+                    <li>Základní kontaktní formulář</li>
+                    <li>1 měsíc podpory</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Zjistit cenu</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <div class="pricing-header">
+                    <h3>Profesionální</h3>
+                </div>
+                <ul class="pricing-features">
+                    <li>Responsivní web design</li>
+                    <li>Až 15 stránek</li>
+                    <li>Pokročilá SEO optimalizace</li>
+                    <li>Vlastní CMS</li>
+                    <li>3 měsíce podpory</li>
+                </ul>
+                <a href="#contact" class="btn">Zjistit cenu</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Premium</h3>
+                </div>
+                <ul class="pricing-features">
+                    <li>Kompletní webová aplikace</li>
+                    <li>Neomezený počet stránek</li>
+                    <li>E-commerce řešení</li>
+                    <li>Admin panel</li>
+                    <li>6 měsíců podpory</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Zjistit cenu</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontaktujte mě</h2>
+                <p>Pojďme si promluvit</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Máte nápad na projekt nebo máte nějaké otázky?</h3>
+                    <p>Neváhejte mě kontaktovat. Rád si s vámi promluvím o vašem projektu a najdeme společně nejlepší řešení.</p>
+                    
+                    <div class="contact-details" style="margin: 20px 0 0 0;">
+                        <div class="contact-detail" >
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Lokace</h4>
+                                <p>Olomouc, Česká republika</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hajekjan78@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p>+420 776 446 104</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Podpora</h4>
+                                <p>24/7!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              <div class="contact-form">
+  <form id="contactForm" action="https://getform.io/f/bllqegrb" method="POST">
+  <div class="form-group">
+    <label for="name">Jméno</label>
+    <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
+  </div>
+
+  <div class="form-group">
+    <label for="subject">Předmět</label>
+    <input type="text" id="subject" name="subject" placeholder="Předmět zprávy" required>
+  </div>
+
+  <div class="form-group">
+    <label for="message">Zpráva</label>
+    <textarea id="message" name="message" placeholder="Vaše zpráva..." required></textarea>
+  </div>
+
+
+  <button type="submit" class="btn">Odeslat zprávu</button>
+</form>
+
+
+
+
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Kejha.dev</h4>
+                    <p>Vytvářím moderní webová řešení na míru vašim potřebám.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Navigace</h4>
+                    <ul>
+                        <li><a href="#">Domů</a></li>
+                        <li><a href="#about">O mně</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Služby</h4>
+                    <ul>
+                        <li><a href="#">Webový vývoj</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">E-commerce</a></li>
+                        <li><a href="#">Optimalizace</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><a href="mailto:hajekjan78@gmail.com">hajekjan78@gmail.com</a></li>
+                        <li><a href="tel:+420776446104">+420 776 446 104</a></li>
+                        <li><a href="#">Olomouc, Česká republika</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kejha.dev. Všechna práva vyhrazena.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // MÍSTO ČISTĚ NA FORMULAŘ ///////////
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+        e.preventDefault(); // zastaví redirect
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch(form.action, {
+                method: form.method,
+                body: data,
+            });
+
+            if (!res.ok) throw new Error("Chyba serveru: " + res.status);
+
+            alert("✅ Děkujeme! Vaše zpráva byla odeslána.");
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            alert("❌ Nastala chyba při odesílání. Zkuste to znovu.");
+        }
+    });
+
+    // Portfolio items - PŘIDÁNO
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    // Loading animation
+    window.addEventListener('load', () => {
+        const loaderWrapper = document.querySelector('.loader-wrapper');
+        setTimeout(() => {
+            loaderWrapper.classList.add('hidden');
+            
+            // Animate navigation items
+            document.querySelectorAll('.nav-menu li').forEach(item => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            });
+            
+            // Add loaded class to nav menu
+            document.querySelector('.nav-menu').classList.add('loaded');
+            
+            // Initialize animations
+            animateOnScroll();
+            animateSkillBars();
+        }, 1500);
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.innerHTML = navMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        if (scrollTop > 500) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+        
+        // Animate sections on scroll
+        animateOnScroll();
+        
+        // Animate skill bars
+        animateSkillBars();
+    });
+    
+    // Scroll to top functionality
+    document.querySelector('.scroll-top').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    
+    // Reviews slider
+    const track = document.querySelector('.reviews-track');
+    const items = document.querySelectorAll('.review-item');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+    
+    function moveSlider() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update active class for animations
+        items.forEach((item, index) => {
+            if (index === currentIndex) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+    
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        moveSlider();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        moveSlider();
+    });
+    
+    // Auto slide every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % items.length;
+        moveSlider();
+    }, 5000);
+    
+    // Animate elements on scroll
+    function animateOnScroll() {
+        const sections = document.querySelectorAll('.section');
+        const serviceCards = document.querySelectorAll('.service-card');
+        const roadmapItems = document.querySelectorAll('.roadmap-item');
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        const aboutImage = document.querySelector('.about-image img');
+        const aboutTexts = document.querySelectorAll('.about-text h2, .about-text p');
+        const skills = document.querySelectorAll('.skill');
+        const contactDetails = document.querySelectorAll('.contact-detail');
+        const formGroups = document.querySelectorAll('.form-group');
+        const contactInfo = document.querySelector('.contact-info h3');
+        
+        const windowHeight = window.innerHeight;
+        const scrollY = window.scrollY || window.pageYOffset;
+        
+        // Animate sections
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY + windowHeight - 100 > sectionTop) {
+                section.classList.add('visible');
+            }
+        });
+        
+        // Animate service cards
+        serviceCards.forEach((card, index) => {
+            const cardTop = card.getBoundingClientRect().top;
+            if (cardTop < windowHeight - 100) {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        // Animate roadmap items
+        roadmapItems.forEach((item, index) => {
+            const itemTop = item.getBoundingClientRect().top;
+            if (itemTop < windowHeight - 100) {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 300);
+            }
+        });
+        
+        // Animate pricing cards
+        pricingCards.forEach((card, index) => {
+            const cardTop = card.getBoundingClientRect().top;
+            if (cardTop < windowHeight - 100) {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        // Animate about section
+        if (aboutImage && aboutImage.getBoundingClientRect().top < windowHeight - 100) {
+            aboutImage.classList.add('visible');
+        }
+        
+        aboutTexts.forEach((text, index) => {
+            if (text.getBoundingClientRect().top < windowHeight - 100) {
+                setTimeout(() => {
+                    text.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        // Animate skills
+        skills.forEach((skill, index) => {
+            if (skill.getBoundingClientRect().top < windowHeight - 100) {
+                setTimeout(() => {
+                    skill.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        // Animate contact details
+        if (contactInfo && contactInfo.getBoundingClientRect().top < windowHeight - 100) {
+            contactInfo.classList.add('visible');
+        }
+        
+        contactDetails.forEach((detail, index) => {
+            if (detail.getBoundingClientRect().top < windowHeight - 100) {
+                setTimeout(() => {
+                    detail.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        formGroups.forEach((group, index) => {
+            if (group.getBoundingClientRect().top < windowHeight - 100) {
+                setTimeout(() => {
+                    group.classList.add('visible');
+                }, index * 200);
+            }
+        });
+        
+        // Animate portfolio items - OPRAVENO
+        portfolioItems.forEach((item, index) => {
+            const itemTop = item.getBoundingClientRect().top;
+            if (itemTop < windowHeight - 100) {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 200);
+            }
+        });
+    }
+    
+    function animateSkillBars() {
+        const skillsSection = document.querySelector('.skills');
+        if (!skillsSection) return;
+
+        const skillsSectionTop = skillsSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (skillsSectionTop < windowHeight - 100) {
+            document.querySelectorAll('.skill-progress').forEach(progress => {
+                const width = progress.getAttribute('data-width');
+                progress.style.width = width;
+            });
+        }
+    }
+
+    // Initialize animations on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('scroll', animateSkillBars);
+        animateOnScroll();
+        animateSkillBars();
+    });
+</script>
+</body>
+</html>
